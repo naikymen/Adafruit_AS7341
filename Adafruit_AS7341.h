@@ -327,6 +327,8 @@ public:
   bool setGPIOInverted(bool gpio_inverted);
   bool getGPIOValue(void);
   bool setGPIOValue(bool);
+  void setSMUXLowChannels(bool f1_f4);
+  Adafruit_I2CDevice *i2c_dev = NULL; ///< Pointer to I2C bus interface
 
 protected:
   virtual bool _init(int32_t sensor_id);
@@ -334,7 +336,6 @@ protected:
       0; ///< The value of the last reading of the spectral interrupt source
          ///< register
 
-  Adafruit_I2CDevice *i2c_dev = NULL; ///< Pointer to I2C bus interface
 
 private:
   bool enableSMUX(void);
@@ -343,7 +344,6 @@ private:
   int8_t getFlickerDetectStatus(void);
   bool setSMUXCommand(as7341_smux_cmd_t command);
   void writeRegister(byte addr, byte val);
-  void setSMUXLowChannels(bool f1_f4);
   uint16_t _channel_readings[12];
   as7341_waiting_t _readingState;
 };
